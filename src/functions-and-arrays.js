@@ -47,18 +47,25 @@ function sumNumbers(numbers) {
 
 // Iteration #3.1
 const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
-const sanitizedArr = [];
+
 function sum(mixedArr) {
+  const sanitizedArr = [];
   if (mixedArr.length === 0) {
     return 0;
   }
   for (let i = 0; i < mixedArr.length; i++) {
-    if (typeof mixedArr[i] === 'string') {
-      sanitizedArr.push(mixedArr[i].length);
-    } else if (typeof mixedArr[i] === 'boolean') {
-      sanitizedArr.push(+mixedArr[i]);
-    } else if (typeof mixedArr[i] === 'number') {
-      sanitizedArr.push(mixedArr[i]);
+    switch (typeof mixedArr[i]) {
+      case 'string':
+        sanitizedArr.push(mixedArr[i].length);
+        break;
+      case 'boolean':
+        sanitizedArr.push(+mixedArr[i]);
+        break;
+      case 'number':
+        sanitizedArr.push(mixedArr[i]);
+        break;
+      default:
+        return 'Data type not supported';
     }
   }
   return sumNumbers(sanitizedArr);
@@ -94,6 +101,31 @@ function averageWordLength(wordsArr) {
     wordsArrLength.push(word.length);
   });
   return averageNumbers(wordsArrLength);
+}
+
+//Bonus #4.1
+//const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+function avg(mixedArr) {
+  const numberArr = [];
+  if (mixedArr.length === 0) {
+    return null;
+  }
+  for (let i = 0; i < mixedArr.length; i++) {
+    switch (typeof mixedArr[i]) {
+      case 'string':
+        numberArr.push(mixedArr[i].length);
+        break;
+      case 'boolean':
+        numberArr.push(+mixedArr[i]);
+        break;
+      case 'number':
+        numberArr.push(mixedArr[i]);
+        break;
+      default:
+        return 'error';
+    }
+  }
+  return averageNumbers(numberArr);
 }
 
 // Iteration #5: Unique arrays

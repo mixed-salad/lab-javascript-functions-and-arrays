@@ -42,7 +42,26 @@ function sumNumbers(numbers) {
   if (numbers.length === 0) {
     return 0;
   }
-  return numbers.reduce((total, currentIndex) => total + currentIndex);
+  return numbers.reduce((total, currentIndex) => total + currentIndex, 0);
+}
+
+// Iteration #3.1
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+const sanitizedArr = [];
+function sum(mixedArr) {
+  if (mixedArr.length === 0) {
+    return 0;
+  }
+  for (let i = 0; i < mixedArr.length; i++) {
+    if (typeof mixedArr[i] === 'string') {
+      sanitizedArr.push(mixedArr[i].length);
+    } else if (typeof mixedArr[i] === 'boolean') {
+      sanitizedArr.push(+mixedArr[i]);
+    } else if (typeof mixedArr[i] === 'number') {
+      sanitizedArr.push(mixedArr[i]);
+    }
+  }
+  return sumNumbers(sanitizedArr);
 }
 
 // Iteration #4: Calculate the average
@@ -106,7 +125,6 @@ function uniquifyArray(wordsUnique) {
 }
 
 uniquifyArray(wordsUnique);
-
 
 // Iteration #6: Find elements
 const wordsFind = [

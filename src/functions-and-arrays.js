@@ -506,3 +506,41 @@ const matrix = [
   ],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
+
+function greatestProduct(matrix) {
+  let greatestNumber = 0;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let k = 0; k < matrix[i].length-3; k++) {
+      let productHorizontal = matrix[i][k] * matrix[i][k+1] * matrix[i][k+2] * matrix[i][k+3]
+      if( productHorizontal > greatestNumber) {
+        greatestNumber = productHorizontal;
+      }
+    }
+  }
+  for (let i = 0; i < matrix.length-3; i++) {
+    for (let k = 0; k < matrix[i].length; k++) {
+      let productVertical = matrix[i][k] * matrix[i+1][k] * matrix[i+2][k] * matrix[i+3][k]
+      if( productVertical > greatestNumber) {
+        greatestNumber = productVertical;
+      }
+    }
+  }
+  return greatestNumber;
+  // for (let i = 0; i < matrix.length; i++) {
+  //   for (let k = 0; k < matrix[i].length-3; k++) {
+  //     let productHorizontal = matrix[i][k] * matrix[i][k+1] * matrix[i][k+2] * matrix[i][k+3]
+  //     if( productHorizontal === greatestNumber) {
+  //       return `${matrix[i][k]} * ${matrix[i][k+1]} * ${matrix[i][k+2]} * ${matrix[i][k+3]} = ${greatestNumber}`
+  //     }
+  //   }
+  // }
+  // for (let i = 0; i < matrix.length-3; i++) {
+  //   for (let k = 0; k < matrix[i].length; k++) {
+  //     let productVertical = matrix[i][k] * matrix[i+1][k] * matrix[i+2][k] * matrix[i+3][k]
+  //     if( productVertical === greatestNumber) {
+  //       return `${matrix[i][k]} * ${matrix[i+1][k]} * ${matrix[i+2][k]} * ${matrix[i+3][k]} = ${greatestNumber}`
+  //     }
+  //   }
+  // }
+}

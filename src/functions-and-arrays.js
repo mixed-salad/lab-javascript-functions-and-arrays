@@ -65,7 +65,7 @@ function sum(mixedArr) {
         sanitizedArr.push(mixedArr[i]);
         break;
       default:
-        return 'Data type not supported';
+        throw new Error('Data type not supported');
     }
   }
   return sumNumbers(sanitizedArr);
@@ -105,27 +105,27 @@ function averageWordLength(wordsArr) {
 
 //Bonus #4.1
 //const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
-function avg(mixedArr) {
+function avg(arr) {
   const numberArr = [];
-  if (mixedArr.length === 0) {
+  if (arr.length === 0) {
     return null;
   }
-  for (let i = 0; i < mixedArr.length; i++) {
-    switch (typeof mixedArr[i]) {
+  for (let i = 0; i < arr.length; i++) {
+    switch (typeof arr[i]) {
       case 'string':
-        numberArr.push(mixedArr[i].length);
+        numberArr.push(arr[i].length);
         break;
       case 'boolean':
-        numberArr.push(+mixedArr[i]);
+        numberArr.push(+arr[i]);
         break;
       case 'number':
-        numberArr.push(mixedArr[i]);
+        numberArr.push(arr[i]);
         break;
       default:
-        return 'error';
+        throw new Error('Data type not supported');
     }
   }
-  return averageNumbers(numberArr);
+  return Number(averageNumbers(numberArr).toFixed(2));
 }
 
 // Iteration #5: Unique arrays
@@ -507,21 +507,22 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-
 function greatestProduct(matrix) {
   let greatestNumber = 0;
   for (let i = 0; i < matrix.length; i++) {
-    for (let k = 0; k < matrix[i].length-3; k++) {
-      let productHorizontal = matrix[i][k] * matrix[i][k+1] * matrix[i][k+2] * matrix[i][k+3]
-      if( productHorizontal > greatestNumber) {
+    for (let k = 0; k < matrix[i].length - 3; k++) {
+      let productHorizontal =
+        matrix[i][k] * matrix[i][k + 1] * matrix[i][k + 2] * matrix[i][k + 3];
+      if (productHorizontal > greatestNumber) {
         greatestNumber = productHorizontal;
       }
     }
   }
-  for (let i = 0; i < matrix.length-3; i++) {
+  for (let i = 0; i < matrix.length - 3; i++) {
     for (let k = 0; k < matrix[i].length; k++) {
-      let productVertical = matrix[i][k] * matrix[i+1][k] * matrix[i+2][k] * matrix[i+3][k]
-      if( productVertical > greatestNumber) {
+      let productVertical =
+        matrix[i][k] * matrix[i + 1][k] * matrix[i + 2][k] * matrix[i + 3][k];
+      if (productVertical > greatestNumber) {
         greatestNumber = productVertical;
       }
     }

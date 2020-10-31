@@ -54,19 +54,28 @@ function sum(mixedArr) {
     return 0;
   }
   for (let i = 0; i < mixedArr.length; i++) {
-    switch (typeof mixedArr[i]) {
-      case 'string':
-        sanitizedArr.push(mixedArr[i].length);
-        break;
-      case 'boolean':
-        sanitizedArr.push(+mixedArr[i]);
-        break;
-      case 'number':
-        sanitizedArr.push(mixedArr[i]);
-        break;
-      default:
-        throw new Error('Data type not supported');
+    if (typeof mixedArr[i] === 'string') {
+      sanitizedArr.push(mixedArr[i].length);
+    } else if (typeof mixedArr[i] === 'boolean') {
+      sanitizedArr.push(+mixedArr[i]);
+    } else if (typeof mixedArr[i] === 'number') {
+      sanitizedArr.push(mixedArr[i]);
+    } else {
+      throw new Error("Unsupported data type sir or ma'am");
     }
+    //   switch (typeof mixedArr[i]) {
+    //     case 'string':
+    //       sanitizedArr.push(mixedArr[i].length);
+    //       break;
+    //     case 'boolean':
+    //       sanitizedArr.push(+mixedArr[i]);
+    //       break;
+    //     case 'number':
+    //       sanitizedArr.push(mixedArr[i]);
+    //       break;
+    //     default:
+    //       throw new Error('');
+    //   }
   }
   return sumNumbers(sanitizedArr);
 }
